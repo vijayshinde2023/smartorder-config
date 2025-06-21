@@ -15,3 +15,22 @@ spring:
   h2: 
     console:
       enabled: true
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      inventory-service:
+        registerHealthIndicator: true
+        slidingWindowSize: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+feign:
+  circuitbreaker:
+    enabled: true
