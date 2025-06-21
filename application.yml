@@ -1,8 +1,5 @@
 # application.yml in your config-repo
 spring:
-  application:
-    name: shared-config
-
   zipkin:
     tracing:
       endpoint: http://localhost:9411/api/v2/spans
