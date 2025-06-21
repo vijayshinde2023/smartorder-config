@@ -1,0 +1,44 @@
+# application.yml in your config-repo
+spring:
+  application:
+    name: shared-config
+
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.web: DEBUG
+    com.smartorders: DEBUG  # your base package
+
+server:
+  error:
+    include-message: always
+
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: FULL
+        connectTimeout: 5000
+        readTimeout: 5000
